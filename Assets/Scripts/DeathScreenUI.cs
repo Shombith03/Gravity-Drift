@@ -206,7 +206,7 @@ public class DeathScreenUI : MonoBehaviour
     {
         int score = (GameManager.Instance != null) ? GameManager.Instance.Score : 0;
         string shareText = "I scored " + score.ToString("N0") + " in Gravity Drift!";
-        GUIUtility.systemCopyBuffer = shareText;
+        CopyToClipboard(shareText);
 
         // Brief feedback
         TextMeshProUGUI btnText = shareButton.GetComponentInChildren<TextMeshProUGUI>();
@@ -222,6 +222,19 @@ public class DeathScreenUI : MonoBehaviour
         btnText.text = "COPIED!";
         yield return new WaitForSecondsRealtime(1.5f);
         if (btnText != null) btnText.text = original;
+    }
+
+    private static void CopyToClipboard(string text)
+    {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        // Use JS interop for WebGL clipboard access
+        Application.ExternalEval(
+            "navigator.clipboard.writeText('" + text.Replace("'", "\\'") + "');");
+#else
+        TextEditor te = new TextEditor { text = text };
+        te.SelectAll();
+        te.Copy();
+#endif
     }
 
     // --- Helpers ---

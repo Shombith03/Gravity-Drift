@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 
 /// <summary>
 /// Central game state manager for Gravity Drift.
@@ -66,7 +67,7 @@ public class GameManager : MonoBehaviour
         {
             GameObject es = new GameObject("EventSystem");
             es.AddComponent<EventSystem>();
-            es.AddComponent<StandaloneInputModule>();
+            es.AddComponent<InputSystemUIInputModule>();
         }
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
