@@ -1,13 +1,15 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// Central game state manager for Gravity Drift.
 /// Tracks score (distance + crystals + near-miss bonuses), combo multiplier,
 /// game states, and personal best via PlayerPrefs.
+/// Ensures an EventSystem exists for UI interaction.
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-    public enum GameState { Playing, GameOver, Paused }
+    public enum GameState { Menu, Playing, GameOver, Paused }
 
     private const string BestScoreKey = "GravityDrift_PersonalBest";
 
@@ -27,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
-    public GameState CurrentState { get; private set; } = GameState.Playing;
+    public GameState CurrentState { get; set; } = GameState.Menu;
     public int Score { get; private set; }
     public int PersonalBest { get; private set; }
     public int ComboMultiplier { get; private set; } = 1;
@@ -59,12 +61,24 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        // Ensure EventSystem exists for UI
+        if (FindFirstObjectByType<EventSystem>() == null)
+        {
+            GameObject es = new GameObject("EventSystem");
+            es.AddComponent<EventSystem>();
+            es.AddComponent<StandaloneInputModule>();
+        }
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             playerTransform = player.transform;
             lastPlayerX = playerTransform.position.x;
         }
+
+        // Fade in on scene load
+        if (UIFader.Instance != null)
+            UIFader.Instance.FadeIn(0.5f);
     }
 
     private void Update()
@@ -175,8 +189,19 @@ public class GameManager : MonoBehaviour
         CurrentState = GameState.Playing;
         Time.timeScale = 1f;
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene(
-            UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        if (UIFader.Instance != null)
+        {
+            UIFader.Instance.FadeOutIn(() =>
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(
+                    UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+            });
+        }
+        else
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(
+                UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     private void AddScore(int points)
