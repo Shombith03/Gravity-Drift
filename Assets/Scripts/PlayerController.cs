@@ -74,7 +74,8 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyForwardMovement()
     {
-        rb.linearVelocity = new Vector2(forwardSpeed, rb.linearVelocity.y);
+        float speed = ObstacleSpawner.GameSpeed > 0f ? ObstacleSpawner.GameSpeed : forwardSpeed;
+        rb.linearVelocity = new Vector2(speed, rb.linearVelocity.y);
     }
 
     private bool HasTapInput()
