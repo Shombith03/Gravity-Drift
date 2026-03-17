@@ -38,6 +38,7 @@ public class ObstacleSpawner : MonoBehaviour
     public int staticBlockPoolSize = 20;
     public int oscillatorPoolSize = 10;
     public int closingGatePoolSize = 6;
+    public int crystalPoolSize = 15;
 
     [Header("Obstacle Dimensions")]
     public float staticBlockWidth = 1.5f;
@@ -50,6 +51,11 @@ public class ObstacleSpawner : MonoBehaviour
     public float gateMinGap = 1.2f;
     public float gateCloseSpeed = 0.5f;
 
+    [Header("Crystals")]
+    [Tooltip("Chance to spawn a crystal between obstacles")]
+    [Range(0f, 1f)]
+    public float crystalSpawnChance = 0.4f;
+
     [Header("Validation")]
     [Tooltip("Minimum gap the player needs to pass through safely")]
     public float playerClearance = 1.1f;
@@ -60,6 +66,7 @@ public class ObstacleSpawner : MonoBehaviour
     private List<StaticBlock> staticBlockPool = new List<StaticBlock>();
     private List<Oscillator> oscillatorPool = new List<Oscillator>();
     private List<ClosingGate> closingGatePool = new List<ClosingGate>();
+    private List<Crystal> crystalPool = new List<Crystal>();
 
     private Transform playerTransform;
     private Camera mainCamera;
@@ -96,6 +103,10 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance != null &&
+            GameManager.Instance.CurrentState != GameManager.GameState.Playing)
+            return;
+
         ElapsedTime += Time.deltaTime;
 
         GameSpeed = baseSpeed + speedIncrement * Mathf.Floor(ElapsedTime / speedIncrementInterval);
@@ -121,6 +132,14 @@ public class ObstacleSpawner : MonoBehaviour
             float spacing = Random.Range(minSpacing, maxSpacing);
             float speedFactor = GameSpeed / baseSpeed;
             spacing *= speedFactor;
+
+            // Spawn crystal between obstacles
+            if (Random.value < crystalSpawnChance)
+            {
+                float crystalX = nextSpawnX + spacing * Random.Range(0.3f, 0.7f);
+                SpawnCrystal(crystalX);
+            }
+
             nextSpawnX += spacing;
         }
     }
@@ -357,6 +376,23 @@ public class ObstacleSpawner : MonoBehaviour
         return true;
     }
 
+    private void SpawnCrystal(float x)
+    {
+        Crystal crystal = null;
+        for (int i = 0; i < crystalPool.Count; i++)
+        {
+            if (!crystalPool[i].IsActive)
+            {
+                crystal = crystalPool[i];
+                break;
+            }
+        }
+        if (crystal == null) return;
+
+        float y = Random.Range(floorY + 0.5f, ceilingY - 0.5f);
+        crystal.Activate(new Vector2(x, y), GetDespawnX());
+    }
+
     private void DeactivateObstacle(Obstacle obstacle)
     {
         obstacle.Deactivate();
@@ -394,6 +430,15 @@ public class ObstacleSpawner : MonoBehaviour
             ClosingGate gate = go.AddComponent<ClosingGate>();
             gate.Deactivate();
             closingGatePool.Add(gate);
+        }
+
+        for (int i = 0; i < crystalPoolSize; i++)
+        {
+            GameObject go = new GameObject("Crystal_" + i);
+            go.transform.SetParent(poolParent);
+            Crystal crystal = go.AddComponent<Crystal>();
+            crystal.Deactivate();
+            crystalPool.Add(crystal);
         }
     }
 

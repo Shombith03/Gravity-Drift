@@ -42,6 +42,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance != null &&
+            GameManager.Instance.CurrentState != GameManager.GameState.Playing)
+            return;
+
         flipTimer -= Time.deltaTime;
 
         if (flipTimer <= 0f && (Input.GetKeyDown(KeyCode.Space) || HasTapInput()))
@@ -76,6 +80,16 @@ public class PlayerController : MonoBehaviour
     {
         float speed = ObstacleSpawner.GameSpeed > 0f ? ObstacleSpawner.GameSpeed : forwardSpeed;
         rb.linearVelocity = new Vector2(speed, rb.linearVelocity.y);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Obstacle obstacle = collision.collider.GetComponentInParent<Obstacle>();
+        if (obstacle != null && obstacle.IsActive)
+        {
+            if (GameManager.Instance != null)
+                GameManager.Instance.TriggerGameOver();
+        }
     }
 
     private bool HasTapInput()

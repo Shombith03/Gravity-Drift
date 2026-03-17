@@ -2,6 +2,7 @@ using UnityEngine;
 
 /// <summary>
 /// Follows the player on the X axis only, keeping Y and Z fixed.
+/// Applies screen shake offset when active.
 /// </summary>
 public class CameraFollow : MonoBehaviour
 {
@@ -22,5 +23,11 @@ public class CameraFollow : MonoBehaviour
         float desiredX = target.position.x + lookAheadX;
         pos.x = Mathf.Lerp(pos.x, desiredX, smoothSpeed * Time.deltaTime);
         transform.position = pos;
+
+        // Apply screen shake offset
+        if (ScreenShake.Instance != null)
+        {
+            transform.position += ScreenShake.Instance.ShakeOffset;
+        }
     }
 }
