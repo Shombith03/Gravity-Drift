@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
     public GravityState CurrentState { get; private set; } = GravityState.FLOOR;
 
+    public event System.Action<GravityState> OnFlip;
+
     private Rigidbody2D rb;
     private float flipTimer;
 
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour
     {
         CurrentState = (CurrentState == GravityState.FLOOR) ? GravityState.CEILING : GravityState.FLOOR;
         flipTimer = flipCooldown;
+        OnFlip?.Invoke(CurrentState);
     }
 
     private void ApplySpringDamper()
@@ -82,13 +85,39 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(speed, rb.linearVelocity.y);
     }
 
+    private bool isDead;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (isDead) return;
+
         Obstacle obstacle = collision.collider.GetComponentInParent<Obstacle>();
         if (obstacle != null && obstacle.IsActive)
         {
-            if (GameManager.Instance != null)
-                GameManager.Instance.TriggerGameOver();
+            isDead = true;
+
+            // Death screen shake
+            ScreenShake.Instance?.ShakeDeath();
+
+            // Hit freeze then game over
+            if (HitFreeze.Instance != null)
+            {
+                HitFreeze.Instance.Freeze(() =>
+                {
+                    // Spawn death particles
+                    ParticleManager.Instance?.PlayDeathExplosion(transform.position);
+
+                    if (GameManager.Instance != null)
+                        GameManager.Instance.TriggerGameOver();
+                });
+            }
+            else
+            {
+                ParticleManager.Instance?.PlayDeathExplosion(transform.position);
+
+                if (GameManager.Instance != null)
+                    GameManager.Instance.TriggerGameOver();
+            }
         }
     }
 

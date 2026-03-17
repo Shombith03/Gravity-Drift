@@ -50,7 +50,8 @@ public class NearMissDetector : MonoBehaviour
             {
                 scoredObstacles.Add(obstacleId);
                 GameManager.Instance.RegisterNearMiss();
-                ScreenShake.Instance?.Shake(0.15f, 0.2f);
+                ScreenShake.Instance?.ShakeNearMiss();
+                AudioManager.Instance?.PlayNearMissThud();
             }
         }
 

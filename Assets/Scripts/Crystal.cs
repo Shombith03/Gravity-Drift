@@ -79,6 +79,9 @@ public class Crystal : MonoBehaviour
         if (SlowMotionController.Instance != null)
             SlowMotionController.Instance.AddCrystalCharge();
 
+        ParticleManager.Instance?.PlayCrystalBurst(transform.position);
+        AudioManager.Instance?.PlayCrystalChime();
+
         Deactivate();
     }
 
