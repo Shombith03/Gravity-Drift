@@ -1,0 +1,199 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!129 &1
+PlayerSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 24
+  productGUID: a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4
+  AndroidProfiler: 0
+  AndroidFilterTouchesWhenObscured: 0
+  AndroidEnableSustainedPerformanceMode: 0
+  defaultScreenOrientation: 4
+  targetDevice: 2
+  useOnDemandResources: 0
+  accelerometerFrequency: 60
+  companyName: GravityDrift
+  productName: Gravity Drift
+  defaultCursor: {fileID: 0}
+  cursorHotspot: {x: 0, y: 0}
+  m_SplashScreenBackgroundColor: {r: 0.039, g: 0.039, b: 0.180, a: 1}
+  m_ShowUnitySplashScreen: 1
+  m_ShowUnitySplashLogo: 1
+  m_SplashScreenOverlayOpacity: 1
+  m_SplashScreenAnimation: 1
+  m_SplashScreenLogoStyle: 1
+  m_SplashScreenDrawMode: 0
+  m_SplashScreenBackgroundAnimationZoom: 1
+  m_SplashScreenLogoAnimationZoom: 1
+  m_SplashScreenBackgroundLandscapeAspect: 1
+  m_SplashScreenBackgroundPortraitAspect: 1
+  m_SplashScreenBackgroundLandscapeUvs:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  m_SplashScreenLogos: []
+  m_VirtualTexturingSupportEnabled: 0
+  m_HolographicPauseOnTrackingLoss: 1
+  m_HolographicTrackingLossScreen: {fileID: 0}
+  defaultScreenWidth: 1920
+  defaultScreenHeight: 1080
+  defaultScreenWidthWeb: 960
+  defaultScreenHeightWeb: 540
+  m_StereoRenderingPath: 0
+  m_ActiveColorSpace: 1
+  m_SpriteBatchVertexThreshold: 300
+  m_MTRendering: 1
+  mobileMTRendering: 0
+  m_StackTraceTypes: 010000000100000001000000010000000100000001000000
+  iosShowActivityIndicatorOnLoading: -1
+  androidShowActivityIndicatorOnLoading: -1
+  displayResolutionDialog: 1
+  allowedAutorotateToPortrait: 1
+  allowedAutorotateToPortraitUpsideDown: 1
+  allowedAutorotateToLandscapeRight: 1
+  allowedAutorotateToLandscapeLeft: 1
+  useOSAutorotation: 1
+  use32BitDisplayBuffer: 1
+  preserveFramebufferAlpha: 0
+  disableDepthAndStencilBuffers: 0
+  androidStartInFullscreen: 1
+  androidRenderOutsideSafeArea: 1
+  androidUseSwappy: 1
+  androidBlitType: 0
+  androidResizableWindow: 0
+  androidDefaultWindowWidth: 1920
+  androidDefaultWindowHeight: 1080
+  androidMinimumWindowWidth: 400
+  androidMinimumWindowHeight: 300
+  androidFullscreenMode: 1
+  defaultIsNativeResolution: 1
+  macRetinaSupport: 1
+  runInBackground: 1
+  captureSingleScreen: 0
+  muteOtherAudioSources: 0
+  Prepare IOS For Recording: 0
+  Force IOS Speakers When Recording: 0
+  deferSystemGesturesMode: 0
+  hideHomeButton: 0
+  submitAnalytics: 1
+  usePlayerLog: 1
+  bakeCollisionMeshes: 0
+  forceSingleInstance: 0
+  useFlipModelSwapchain: 1
+  resizableWindow: 0
+  useMacAppStoreValidation: 0
+  macAppStoreCategory: public.app-category.games
+  gpuSkinning: 1
+  xboxPIXTextureCapture: 0
+  xboxEnableAvatar: 0
+  xboxEnableKinect: 0
+  xboxEnableKinectAutoTracking: 0
+  xboxEnableFitness: 0
+  visibleInBackground: 1
+  allowFullscreenSwitch: 1
+  fullscreenMode: 1
+  xboxSpeechDB: 0
+  xboxEnableHeadOrientation: 0
+  xboxEnableGuest: 0
+  xboxEnablePIXSampling: 0
+  metalFramebufferOnly: 0
+  xboxOneResolution: 0
+  xboxOneSResolution: 0
+  xboxOneXResolution: 0
+  xboxOneMonoLoggingLevel: 0
+  xboxOneLoggingLevel: 1
+  n3dsDisableStereoscopicView: 0
+  n3dsEnableSharedListOpt: 1
+  n3dsEnableVSync: 0
+  xboxOnePlayerSupportsEnhancedGraphics: 0
+  xboxOneDisableEsram: 0
+  scriptingRuntimeVersion: 1
+  scriptingBackend:
+    Standalone: 1
+  managedStrippingLevel: {}
+  incrementalIl2cppBuild: {}
+  suppressCommonWarnings: 1
+  allowUnsafeCode: 0
+  useDeterministicCompilation: 1
+  additionalIl2CppArgs:
+  scriptingDefineSymbols: {}
+  platformArchitecture: {}
+  il2cppStacktraceInformation: {}
+  il2cppCompilerConfiguration: {}
+  apiCompatibilityLevelPerPlatform:
+    Standalone: 3
+  m_RenderingPath: 1
+  m_MobileRenderingPath: 1
+  metroPackageName: GravityDrift
+  metroPackageVersion:
+  metroCertificatePath:
+  metroCertificatePassword:
+  metroCertificateSubject:
+  metroCertificateIssuer:
+  metroCertificateNotAfter: 0000000000000000
+  metroApplicationDescription: Gravity Drift
+  wsaImages: {}
+  metroTileShortName:
+  metroTileShowName: 0
+  metroMediumTileShowName: 0
+  metroLargeTileShowName: 0
+  metroWideTileShowName: 0
+  metroSupportStreamingInstall: 0
+  metroLastRequiredScene: 0
+  metroDefaultTileSize: 1
+  metroTileForegroundText: 2
+  metroTileBackgroundColor: {r: 0.13333334, g: 0.17254902, b: 0.21568628, a: 0}
+  metroSplashScreenBackgroundColor: {r: 0.12941177, g: 0.17254902, b: 0.21568628, a: 1}
+  platformCapabilities: {}
+  metroTargetDeviceFamilies: {}
+  metroFTAName:
+  metroFTAFileTypes: []
+  metroProtocolName:
+  vcxProjDefaultLanguage:
+  XboxOneProductId:
+  XboxOneUpdateKey:
+  XboxOneSandboxId:
+  XboxOneContentId:
+  XboxOneTitleId:
+  XboxOneSCId:
+  XboxOneGameOsOverridePath:
+  XboxOnePackagingOverridePath:
+  XboxOneAppManifestOverridePath:
+  XboxOneVersion: 1.0.0.0
+  XboxOnePackageEncryption: 0
+  XboxOneUpdateContentVersion: 1.0.0.0
+  XboxOneIsContentPackage: 0
+  XboxOneEnhancedXboxCompatibilityMode: 0
+  XboxOneAllowedProductIds: []
+  XboxOnePersistentLocalStorageSize: 0
+  XboxOneXTitleMemory: 8
+  XboxOneOverrideIdentityName:
+  XboxOneOverrideIdentityPublisher:
+  vraborting: 1
+  vrEditorSettings: {}
+  cloudServicesEnabled: {}
+  luminIcon:
+    m_Name:
+    m_ModelFolderPath:
+    m_PortalFolderPath:
+  luminCert:
+    m_CertPath:
+    m_SignPackage: 1
+  luminIsChannelApp: 0
+  luminVersion:
+    m_VersionCode: 1
+    m_VersionName:
+  apiCompatibilityLevel: 6
+  activeInputHandler: 2
+  windowsGamepadBackendHint: 0
+  cloudProjectId:
+  framebufferDepthMemorylessMode: 0
+  qualitySettingsNames: []
+  projectName:
+  organizationId:
+  cloudEnabled: 0
+  legacyClampBlendShapeWeights: 0
+  hdrBitDepth: 0
+  virtualTexturingSupportEnabled: 0
